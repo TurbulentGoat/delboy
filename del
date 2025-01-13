@@ -1,0 +1,23 @@
+#!/bin/bash
+# This script moves the files you want to "delete" to a trash folder (for 1 day)
+# Instead of permanently removing them instantly.
+
+# Define the trash directory (adjust if desired)
+TRASH_DIR="${HOME}/.trash"
+
+# Create the trash directory if it doesn't exist.
+if [ ! -d "$TRASH_DIR" ]; then
+    mkdir -p "$TRASH_DIR"
+fi
+
+# For each argument (file), move it into the trash directory.
+for file in "$@"; do
+    if [ -e "$file" ]; then
+        # Add a timestamp to avoid name clashes:
+        ts=$(date +%s)
+        base=$(basename "$file")
+        mv "$file" "${TRASH_DIR}/${ts}_${base}"
+    else
+        echo "File '$file' not found."
+    fi
+done
