@@ -35,7 +35,7 @@ Go to `cd /usr/local/bin` and create a new script `vim deltimer.sh` with the fol
 ````
   #!/bin/bash
   #A basic delete/update script to clear out the trash once a day
-  rm -rf "${HOME}/.trash/*"
+  rm -rf ${HOME}/.trash/*
   echo "There goes the trash!"
  ````
 And make that one executable too.  
